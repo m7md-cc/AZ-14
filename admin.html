@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>لوحة التحكم | AZ14</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+    <div class="admin-container">
+        
+        <!-- Sidebar -->
+        <aside class="sidebar">
+            <a href="index.html" class="logo" style="margin-bottom: 30px; display: flex;">
+                <span class="logo-icon">⚽</span>
+                AZ14
+            </a>
+            
+            <nav>
+                <a href="#" class="sidebar-link active" data-page="dashboard">
+                    <span class="icon">📊</span> الرئيسية
+                </a>
+                <a href="#" class="sidebar-link" data-page="bookings">
+                    <span class="icon">📅</span> إدارة الحجوزات
+                </a>
+                <a href="#" class="sidebar-link" data-page="announcements">
+                    <span class="icon">📢</span> الإعلانات
+                </a>
+                <a href="#" class="sidebar-link" data-page="settings">
+                    <span class="icon">⚙️</span> الإعدادات
+                </a>
+                <a href="#" class="sidebar-link" data-page="notifications">
+                    <span class="icon">🔔</span> الإشعارات
+                </a>
+                <a href="#" class="sidebar-link" data-page="reports">
+                    <span class="icon">📈</span> التقارير
+                </a>
+            </nav>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            
+            <!-- Dashboard -->
+            <div id="page-dashboard">
+                <h2 style="font-size: 28px; font-weight: 900; margin-bottom: 30px;">📊 لوحة القيادة</h2>
+                
+                <div class="stats-grid">
+                    <div class="glass-card stat-card">
+                        <p class="stat-value" id="todayBookings">0</p>
+                        <p class="stat-label">حجوزات اليوم</p>
+                    </div>
+                    <div class="glass-card stat-card">
+                        <p class="stat-value" id="upcomingCount">0</p>
+                        <p class="stat-label">حجوزات قادمة</p>
+                    </div>
+                    <div class="glass-card stat-card">
+                        <p class="stat-value" id="totalRevenue">0</p>
+                        <p class="stat-label">الإيرادات (ج.م)</p>
+                    </div>
+                    <div class="glass-card stat-card">
+                        <p class="stat-value" id="confirmedCount">0</p>
+                        <p class="stat-label">مؤكدة</p>
+                    </div>
+                </div>
+
+                <div class="stats-grid" style="grid-template-columns: repeat(2, 1fr);">
+                    <div class="glass-card stat-card">
+                        <p class="stat-value" id="pendingCount">0</p>
+                        <p class="stat-label">معلقة</p>
+                    </div>
+                    <div class="glass-card stat-card">
+                        <p class="stat-value" id="cancelledCount">0</p>
+                        <p class="stat-label">ملغاة</p>
+                    </div>
+                </div>
+
+                <h3 style="margin: 40px 0 20px; font-size: 20px; color: #22C55E;">📋 جدول مواعيد اليوم</h3>
+                <div class="glass-card table-container" style="padding: 20px;">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>الوقت</th>
+                                <th>العميل</th>
+                                <th>المدة</th>
+                                <th>النوع</th>
+                                <th>الحالة</th>
+                            </tr>
+                        </thead>
+                        <tbody id="todaySchedule"></tbody>
+                    </table>
+                </div>
+            </div>
+
+            <!-- Bookings Management -->
+            <div id="page-bookings" style="display: none;">
+                <h2 style="font-size: 28px; font-weight: 900; margin-bottom: 30px;">📅 إدارة الحجوزات</h2>
+                
+                <div class="glass-card" style="padding: 25px; margin-bottom: 30px;">
+                    <div style="display: flex; gap: 15px; flex-wrap: wrap;">
+                        <input type="tel" id="searchPhone" class="form-input" placeholder="ابحث برقم الموبايل..." style="flex: 1;">
+                        <button id="searchBtn" class="btn-primary">بحث</button>
+                        <button id="addManualBooking" class="btn-secondary">+ إضافة حجز يدوي</button>
+                    </div>
+                </div>
+
+                <div class="glass-card table-container" style="padding: 20px;">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>التاريخ</th>
+                                <th>الوقت</th>
+                                <th>المدة</th>
+                                <th>العميل</th>
+                                <th>النوع</th>
+                                <th>المصدر</th>
+                                <th>الحالة</th>
+                                <th>إجراءات</th>
+                            </tr>
+                        </thead>
+                        <tbody id="bookingsTable"></tbody>
+                    </table>
+                </div>
+            </div>
+
+            <!-- Announcements -->
+            <div id="page-announcements" style="display: none;">
+                <h2 style="font-size: 28px; font-weight: 900; margin-bottom: 30px;">📢 الإعلانات</h2>
+                
+                <button id="addAnnouncement" class="btn-primary" style="margin-bottom: 30px;">+ إعلان جديد</button>
+                
+                <div id="announcementsList"></div>
+            </div>
+
+            <!-- Settings -->
+            <div id="page-settings" style="display: none;">
+                <h2 style="font-size: 28px; font-weight: 900; margin-bottom: 30px;">⚙️ الإعدادات</h2>
+                
+                <div class="glass-card" style="padding: 30px; max-width: 500px;">
+                    <div class="form-group">
+                        <label class="form-label">🌅 سعر الفترة النهارية (ج.م)</label>
+                        <input type="number" id="dayPrice" class="form-input" value="70">
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">🌙 سعر الفترة الليلية (ج.م)</label>
+                        <input type="number" id="nightPrice" class="form-input" value="80">
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">🕐 بداية السعر الليلي</label>
+                        <input type="time" id="nightStart" class="form-input" value="19:30">
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">🏟️ وقت فتح الملعب</label>
+                        <input type="time" id="openTime" class="form-input" value="17:00">
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">🌙 وقت إغلاق الملعب</label>
+                        <input type="time" id="closeTime" class="form-input" value="01:00">
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">🔔 وقت التذكير قبل الحجز</label>
+                        <select id="reminderTime" class="form-input">
+                            <option value="60">قبل ساعة</option>
+                            <option value="120">قبل ساعتين</option>
+                            <option value="180">قبل 3 ساعات</option>
+                            <option value="240">قبل 4 ساعات</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">✅ استقبال الحجوزات</label>
+                        <select id="bookingsEnabled" class="form-input">
+                            <option value="true">مفعل</option>
+                            <option value="false">متوقف</option>
+                        </select>
+                    </div>
+                    <button id="saveSettings" class="btn-primary btn-block">حفظ الإعدادات</button>
+                </div>
+            </div>
+
+            <!-- Notifications -->
+            <div id="page-notifications" style="display: none;">
+                <h2 style="font-size: 28px; font-weight: 900; margin-bottom: 30px;">🔔 الإشعارات</h2>
+                <div id="notificationsList"></div>
+            </div>
+
+            <!-- Reports -->
+            <div id="page-reports" style="display: none;">
+                <h2 style="font-size: 28px; font-weight: 900; margin-bottom: 30px;">📈 التقارير</h2>
+                
+                <div class="stats-grid">
+                    <div class="glass-card stat-card">
+                        <p class="stat-value" id="totalBookings">0</p>
+                        <p class="stat-label">إجمالي الحجوزات</p>
+                    </div>
+                    <div class="glass-card stat-card">
+                        <p class="stat-value" id="totalRevenue2">0</p>
+                        <p class="stat-label">إجمالي الإيرادات</p>
+                    </div>
+                    <div class="glass-card stat-card">
+                        <p class="stat-value" id="cancelledTotal">0</p>
+                        <p class="stat-label">حجوزات ملغاة</p>
+                    </div>
+                    <div class="glass-card stat-card">
+                        <p class="stat-value" id="weeklyTotal">0</p>
+                        <p class="stat-label">حجوزات أسبوعية</p>
+                    </div>
+                </div>
+            </div>
+
+        </main>
+    </div>
+
+    <script src="js/supabase.js"></script>
+    <script src="js/admin.js"></script>
+</body>
+                                             </html>
