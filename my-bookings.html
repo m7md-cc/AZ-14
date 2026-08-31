@@ -34,7 +34,7 @@
             <div class="glass-card" style="padding: 40px 30px; max-width: 500px; margin: 0 auto 40px;">
                 <div class="form-group">
                     <label class="form-label">📱 رقم الموبايل</label>
-                    <input type="tel" id="phone" class="form-input" placeholder="01xxxxxxxxx">
+                    <input type="tel" id="phone" class="form-input" placeholder="01xxxxxxxxx" pattern="01[0-9]{9}" required>
                 </div>
                 <button id="searchBookings" class="btn-primary btn-block">عرض حجوزاتي</button>
             </div>
@@ -53,6 +53,7 @@
         </div>
     </section>
 
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
     <script src="js/supabase.js"></script>
     <script src="js/my-bookings.js"></script>
 </body>
