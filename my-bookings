@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>حجزي | AZ14</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+    <!-- Header -->
+    <header class="header">
+        <div class="container header-content">
+            <a href="index.html" class="logo">
+                <span class="logo-icon">⚽</span>
+                AZ14
+            </a>
+            <button class="menu-toggle" id="menuToggle">☰</button>
+            <nav class="nav" id="nav">
+                <a href="index.html" class="nav-link">الرئيسية</a>
+                <a href="booking.html" class="nav-link">احجز الآن</a>
+                <a href="my-bookings.html" class="nav-link active">حجزي</a>
+            </nav>
+        </div>
+    </header>
+
+    <!-- My Bookings Section -->
+    <section class="section" style="padding-top: 40px;">
+        <div class="container">
+            <h2 class="section-title">حجوزاتي</h2>
+            <p class="section-subtitle">اكتب رقم موبايلك وشوف حجوزاتك</p>
+
+            <!-- رقم الموبايل -->
+            <div class="glass-card" style="padding: 40px 30px; max-width: 500px; margin: 0 auto 40px;">
+                <div class="form-group">
+                    <label class="form-label">📱 رقم الموبايل</label>
+                    <input type="tel" id="phone" class="form-input" placeholder="01xxxxxxxxx">
+                </div>
+                <button id="searchBookings" class="btn-primary btn-block">عرض حجوزاتي</button>
+            </div>
+
+            <!-- الحجوزات القادمة -->
+            <div id="upcomingBookings" style="margin-bottom: 40px;">
+                <h3 style="color: #22C55E; margin-bottom: 20px; font-size: 22px;">📅 الحجوزات القادمة</h3>
+                <div id="upcomingContainer"></div>
+            </div>
+
+            <!-- الحجوزات السابقة -->
+            <div id="pastBookings">
+                <h3 style="color: #94A3B8; margin-bottom: 20px; font-size: 22px;">📜 الحجوزات السابقة</h3>
+                <div id="pastContainer"></div>
+            </div>
+        </div>
+    </section>
+
+    <script src="js/supabase.js"></script>
+    <script src="js/my-bookings.js"></script>
+</body>
+</html>
