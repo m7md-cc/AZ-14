@@ -8,7 +8,6 @@
 </head>
 <body>
 
-    <!-- Header -->
     <header class="header">
         <div class="container header-content">
             <a href="index.html" class="logo">
@@ -24,7 +23,6 @@
         </div>
     </header>
 
-    <!-- Booking Section -->
     <section class="section" style="padding-top: 40px;">
         <div class="container">
             <h2 class="section-title">احجز ملعبك</h2>
@@ -32,21 +30,18 @@
 
             <div class="glass-card" style="padding: 40px 30px; max-width: 600px; margin: 0 auto;">
                 
-                <!-- التاريخ -->
                 <div class="form-group">
                     <label class="form-label">📅 اختر التاريخ</label>
                     <input type="date" id="bookingDate" class="form-input">
                 </div>
 
-                <!-- المواعيد المتاحة -->
                 <div class="form-group">
                     <label class="form-label">🕐 اختر وقت البداية</label>
                     <div id="slotsContainer" class="slots-grid">
-                        <!-- بتتحمل من Supabase -->
+                        <p style="color: #64748B; text-align: center; grid-column: 1/-1;">اختر التاريخ الأول</p>
                     </div>
                 </div>
 
-                <!-- المدة -->
                 <div class="form-group">
                     <label class="form-label">⏱️ مدة الحجز</label>
                     <select id="duration" class="form-input">
@@ -56,7 +51,6 @@
                     </select>
                 </div>
 
-                <!-- نوع الحجز -->
                 <div class="form-group">
                     <label class="form-label">📋 نوع الحجز</label>
                     <select id="bookingType" class="form-input">
@@ -65,19 +59,16 @@
                     </select>
                 </div>
 
-                <!-- رقم الموبايل -->
                 <div class="form-group">
                     <label class="form-label">📱 رقم الموبايل</label>
                     <input type="tel" id="phone" class="form-input" placeholder="01xxxxxxxxx" pattern="01[0-9]{9}">
                 </div>
 
-                <!-- ملخص السعر -->
                 <div class="glass-card" style="padding: 25px; margin-bottom: 25px; text-align: center; background: rgba(34,197,94,0.05);">
                     <p style="color: #94A3B8; margin-bottom: 10px;">السعر الإجمالي</p>
                     <p id="totalPrice" style="font-size: 40px; font-weight: 900; color: #22C55E;">0 ج.م</p>
                 </div>
 
-                <!-- زر الحجز -->
                 <button id="confirmBooking" class="btn-primary btn-block">تأكيد الحجز</button>
             </div>
         </div>
